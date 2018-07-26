@@ -18,15 +18,15 @@
     <div class="container">
         <div class="jumbotron text-center">
             <h1 class="display-4">Mission to Mars</h1>
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape</a>
+            <p class="header">
+                <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a>
             </p>
         </div>
     </div>
 
     <div class="container">
         <div class="row">
-            <div class="col-md-12 col-sm-12">            
+            <div class="col-md-12">            
                 <h3>Latest Mars News</h3>
                 <h4>{{ mars_data.news_title }}</h4>
                 <p>{{ mars_data.news_p }}</p>
@@ -36,11 +36,11 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-sm-12">            
+            <div class="col-md-8">            
                 <h3>Featured Mars Image</h3>
                 <img src="{{ mars_data.featured_image_url}}">
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-body">            
                         <h4>Current Weather on Mars</h4>
@@ -57,10 +57,10 @@
         <h3>Mars Hemispheres</h3>
         <hr>
         {% for mars_hemisphere in mars_data.hemisphere_image_urls  %}
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img src="{{ mars_hemisphere.['img_url'] }}" alt="{{ mars_hemisphere.['title'] }}">
+                    <img src="{{ mars_hemisphere['img_url'] }}" alt="{{ mars_hemisphere['title'] }}">
                 </div>
             </div>
         </div>

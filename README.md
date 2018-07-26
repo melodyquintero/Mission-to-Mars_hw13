@@ -51,7 +51,7 @@ news_title
 
 
 
-    'NASA\'s MAVEN Spacecraft Finds That "Stolen" Electrons Enable Unusual Aurora on Mars'
+    'NASA Statement on Possible Subsurface Lake near Martian South Pole'
 
 
 
@@ -63,7 +63,7 @@ news_p
 
 
 
-    'Auroras appear on Earth as ghostly displays of colorful light in the night sky, usually near the poles.'
+    "A new paper suggests that liquid water may be sitting under a layer of ice at Mars' south pole."
 
 
 
@@ -102,7 +102,7 @@ featured_image_url
 
 
 
-    'https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA18884_hires.jpg'
+    'https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA19330_hires.jpg'
 
 
 
@@ -131,7 +131,8 @@ print(mars_weather)
 ```
 
     
-    L-2 years. #Mars2020
+    Radar analysis from the Mars Express orbiter indicates liquid water beneath the Planum Australe region.
+    https://www.esa.int/Our_Activities/Space_Science/Mars_Express/Mars_Express_detects_liquid_water_hidden_under_planet_s_south_pole …pic.twitter.com/30d37fSxQc
     
     
 
@@ -235,13 +236,82 @@ facts_df
 
 ```python
 facts_html = facts_df.to_html()
-facts_html
+#facts_html
 ```
 
 
 
 
     '<table border="1" class="dataframe">\n  <thead>\n    <tr style="text-align: right;">\n      <th></th>\n      <th>Measurement</th>\n      <th>Facts</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>Equatorial Diameter:</td>\n      <td>6,792 km</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>Polar Diameter:</td>\n      <td>6,752 km</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>Mass:</td>\n      <td>6.42 x 10^23 kg (10.7% Earth)</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>Moons:</td>\n      <td>2 (Phobos &amp; Deimos)</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>Orbit Distance:</td>\n      <td>227,943,824 km (1.52 AU)</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>Orbit Period:</td>\n      <td>687 days (1.9 years)</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>Surface Temperature:</td>\n      <td>-153 to 20 °C</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>First Record:</td>\n      <td>2nd millennium BC</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>Recorded By:</td>\n      <td>Egyptian astronomers</td>\n    </tr>\n  </tbody>\n</table>'
+
+
+
+
+```python
+soup_facts = bs(facts_html, 'html.parser')
+mars_facts = soup_facts.find('table')
+mars_facts
+```
+
+
+
+
+    <table border="1" class="dataframe">
+    <thead>
+    <tr style="text-align: right;">
+    <th></th>
+    <th>Measurement</th>
+    <th>Facts</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <th>0</th>
+    <td>Equatorial Diameter:</td>
+    <td>6,792 km</td>
+    </tr>
+    <tr>
+    <th>1</th>
+    <td>Polar Diameter:</td>
+    <td>6,752 km</td>
+    </tr>
+    <tr>
+    <th>2</th>
+    <td>Mass:</td>
+    <td>6.42 x 10^23 kg (10.7% Earth)</td>
+    </tr>
+    <tr>
+    <th>3</th>
+    <td>Moons:</td>
+    <td>2 (Phobos &amp; Deimos)</td>
+    </tr>
+    <tr>
+    <th>4</th>
+    <td>Orbit Distance:</td>
+    <td>227,943,824 km (1.52 AU)</td>
+    </tr>
+    <tr>
+    <th>5</th>
+    <td>Orbit Period:</td>
+    <td>687 days (1.9 years)</td>
+    </tr>
+    <tr>
+    <th>6</th>
+    <td>Surface Temperature:</td>
+    <td>-153 to 20 °C</td>
+    </tr>
+    <tr>
+    <th>7</th>
+    <td>First Record:</td>
+    <td>2nd millennium BC</td>
+    </tr>
+    <tr>
+    <th>8</th>
+    <td>Recorded By:</td>
+    <td>Egyptian astronomers</td>
+    </tr>
+    </tbody>
+    </table>
 
 
 

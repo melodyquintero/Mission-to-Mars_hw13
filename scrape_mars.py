@@ -6,17 +6,22 @@ import pymongo
 from splinter import Browser
 import pandas as pd
 import time
+from selenium import webdriver
 
 # # NASA Mars News
 # Scrape the NASA Mars News Site and collect the latest News Title and Paragraph Text.
 
-executable_path = {'executable_path': 'chromedriver.exe'}
-browser = Browser('chrome', **executable_path, headless=False)
+# Initialize browser
+def init_browser():
+    # @NOTE: Replace the path with your actual path to the chromedriver
+    executable_path = {"executable_path": "chromedriver.exe"}
+    return Browser("chrome", **executable_path, headless=False)
 
 mars_data = dict()
 
 
-def scrape(browser):
+def scrape():
+    browser = init_browser()
     news_url = 'https://mars.nasa.gov/news/'
     browser.visit(news_url)
 
@@ -25,10 +30,11 @@ def scrape(browser):
 
     # find the latest news, results return the first 'slide' it found
     latest_news = soup.find('li', class_='slide')
-    #debug
-    time.sleep(5)
+    
     news_title = latest_news.find('div',class_='content_title').text
     news_p = latest_news.find('div',class_='article_teaser_body').text
+    #debug
+    time.sleep(5)
 
 
 
@@ -41,7 +47,7 @@ def scrape(browser):
     time.sleep(5)
     browser.click_link_by_partial_text('more info')
     # lead to detailed page with fullsize image
-
+    time.sleep(5)
     featured_image_url = browser.find_by_tag('figure').first.find_by_tag('a')['href']
 
 
@@ -61,7 +67,6 @@ def scrape(browser):
     facts_df = pd.read_html(facts_url)[0]
     facts_df.columns = ['Measurement','Facts']
     facts_html = facts_df.to_html()
-    facts_html
 
 
     # # Mars Hemispheres
